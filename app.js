@@ -18,94 +18,12 @@ var connector = new builder.ChatConnector({
 server.post('/api/messages', connector.listen());
 
 // Bot setup
-var bot = new builder.UniversalBot(connector, function (session) {
+    var bot = new builder.UniversalBot(connector, function (session) {
     var cards = getCardsAttachments();
-
-    // create reply with Carousel AttachmentLayout
-    var reply = new builder.Message(session)
-        .attachmentLayout(builder.AttachmentLayout.carousel)
-        .attachments(cards);
-
-    session.send(reply);
-});
-
-function getCardsAttachments(session) {
-    return [
-        new builder.HeroCard(session)
-            .title('Finnair Plus')
-            .subtitle('Luottokortti')
-            .text('Customers top choice')
-            .images([
-                builder.CardImage.create(session, 'http://www.bankiton.com/sites/default/files/finnair_plus_diners_club.png')
-            ])
-            .buttons([
-                builder.CardAction.openUrl(session, 'https://www.bankiton.com', 'More info')
-            ]),
-
-        new builder.ThumbnailCard(session)
-            .title('S-Etukortti Visa Credit')
-            .subtitle('S-Market')
-            .text('Customers top choice')
-            .images([
-                builder.CardImage.create(session, 'http://www.bankiton.com/sites/default/files/S-Pankki%20S-Etukortti%20VISA.gif')
-            ])
-            .buttons([
-                builder.CardAction.openUrl(session, 'https://www.bankiton.com', 'More info')
-            ]),
-
-        new builder.HeroCard(session)
-            .title('SAS EuroBonus Diners Club')
-            .subtitle('Luottokortti')
-            .text('Customers top choice')
-            .images([
-                builder.CardImage.create(session, 'http://www.bankiton.com/sites/default/files/SAS%20EuroBonus%20Dines%20Club.png')
-            ])
-            .buttons([
-                builder.CardAction.openUrl(session, 'https://www.bankiton.com', 'More info')
-            ]),
-
-        new builder.ThumbnailCard(session)
-            .title('Diners Club Premium')
-            .subtitle('Luottokortti')
-            .text('Customers top choice')
-            .images([
-                builder.CardImage.create(session, 'http://www.bankiton.com/sites/default/files/Diners%20Club%20Premium_0.png')
-            ])
-            .buttons([
-                builder.CardAction.openUrl(session, 'https://www.bankiton.com', 'More info')
-            ])
-    ];
-}
-
-
-
-/*
-
-var builder = require('botbuilder');
-var restify = require('restify');
-
-// Setup Restify Server
-var server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
-    console.log('%s listening to %s', server.name, server.url);
-});
-
-// Create chat bot and listen to messages
-var connector = new builder.ChatConnector({
-    appId: process.env.MICROSOFT_APP_ID,
-    appPassword: process.env.MICROSOFT_APP_PASSWORD
-});
-server.post('/api/messages', connector.listen());
-
-
-
-
-
-// Bot setup
-var bot = new builder.UniversalBot(connector);
-var intents = new builder.IntentDialog();
-var connector = new builder.ConsoleConnector().listen();
-
+    var intents = new builder.IntentDialog();
+    var connector = new builder.ConsoleConnector().listen();
+    
+    
 //=========================================================
 // Bots Dialogs
 //=========================================================
@@ -183,5 +101,60 @@ bot.dialog('/ccard', [ function(session) {
 
 }]);
 
-*/
- 
+
+    // create reply with Carousel AttachmentLayout
+    var reply = new builder.Message(session)
+        .attachmentLayout(builder.AttachmentLayout.carousel)
+        .attachments(cards);
+
+    session.send(reply);
+});
+
+function getCardsAttachments(session) {
+    return [
+        new builder.HeroCard(session)
+            .title('Finnair Plus')
+            .subtitle('Luottokortti')
+            .text('Customers top choice')
+            .images([
+                builder.CardImage.create(session, 'http://www.bankiton.com/sites/default/files/finnair_plus_diners_club.png')
+            ])
+            .buttons([
+                builder.CardAction.openUrl(session, 'https://www.bankiton.com', 'More info')
+            ]),
+
+        new builder.ThumbnailCard(session)
+            .title('S-Etukortti Visa Credit')
+            .subtitle('S-Market')
+            .text('Customers top choice')
+            .images([
+                builder.CardImage.create(session, 'http://www.bankiton.com/sites/default/files/S-Pankki%20S-Etukortti%20VISA.gif')
+            ])
+            .buttons([
+                builder.CardAction.openUrl(session, 'https://www.bankiton.com', 'More info')
+            ]),
+
+        new builder.HeroCard(session)
+            .title('SAS EuroBonus Diners Club')
+            .subtitle('Luottokortti')
+            .text('Customers top choice')
+            .images([
+                builder.CardImage.create(session, 'http://www.bankiton.com/sites/default/files/SAS%20EuroBonus%20Dines%20Club.png')
+            ])
+            .buttons([
+                builder.CardAction.openUrl(session, 'https://www.bankiton.com', 'More info')
+            ]),
+
+        new builder.ThumbnailCard(session)
+            .title('Diners Club Premium')
+            .subtitle('Luottokortti')
+            .text('Customers top choice')
+            .images([
+                builder.CardImage.create(session, 'http://www.bankiton.com/sites/default/files/Diners%20Club%20Premium_0.png')
+            ])
+            .buttons([
+                builder.CardAction.openUrl(session, 'https://www.bankiton.com', 'More info')
+            ])
+    ];
+}
+
